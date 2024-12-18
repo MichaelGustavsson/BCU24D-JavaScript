@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://kit.fontawesome.com/55174c58a9.js"
+      crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="site.css" />
+    <script src="./app.js" defer></script>
+    <title>Inköpslista</title>
+  </head>
+  <body>
+    <main>
+      <div class="container">
+        <header>
+          <img src="./images/notepad.png" alt="notepad" />
+          <h1 id="app-title" class="page-title">Inköpslista</h1>
+        </header>
+        <form id="item-form">
+          <div class="form-control">
+            <input type="text" id="item-input" class="form-input" />
+          </div>
+          <div class="form-control">
+            <button class="btn btn-primary">
+              <i class="fa-solid fa-plus"> Lägg till</i>
+            </button>
+          </div>
+        </form>
+        <div class="filter">
+          <input
+            type="text"
+            class="form-input-filter"
+            id="filter"
+            placeholder="Sök" />
+        </div>
+
+        <ul class="items" id="item-list">
+          <li>
+            Krisp sallad
+            <button class="remove-item btn-link text-red">
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+          </li>
+          <li>
+            Tomater
+            <button class="remove-item btn-link text-red">
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+          </li>
+          <li>
+            Mjölk
+            <button class="remove-item btn-link text-red">
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+          </li>
+          <li>
+            Juice
+            <button class="remove-item btn-link text-red">
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+          </li>
+        </ul>
+        <button id="clear" class="btn-clear">Töm Allt</button>
+      </div>
+    </main>
+  </body>
+</html>
