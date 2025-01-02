@@ -1,0 +1,16 @@
+{
+  "name": "intro-tdd",
+  "version": "1.0.0",
+  "description": "Introduktion till Test Driven Utveckling",
+  "main": "app.js",
+  "scripts": {
+    "test": "vitest",
+    "test-ui": "vitest --ui"
+  },
+  "author": "Michael Gustavsson",
+  "license": "ISC",
+  "devDependencies": {
+    "@vitest/ui": "^2.1.8",
+    "vitest": "^2.1.8"
+  }
+}
