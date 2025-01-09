@@ -1,53 +1,62 @@
 /*************************************************/
-// Shopping List Steg 1
+// Shopping List
 /*************************************************/
-// Hämta in referenser till elementen...
 const form = document.querySelector('#item-form');
 const input = document.querySelector('#item-input');
 const groceryList = document.querySelector('#item-list'); // UL elementet i index.html
 const clearButton = document.querySelector('#clear');
 const filterInput = document.querySelector('#filter');
+const saveButton = form.querySelector('button');
 
-// Initieringskod för applikationen...
+let isInEditMode = false;
+
 const initApp = () => {
+  const groceries = getFromStorage();
+  groceries.forEach((item) => addToDOM(item));
   updateUI();
 };
 
-// Skapar händelsefunktioner (event listeners)
 const handleAddGrocery = (e) => {
-  // 1. Förhindra att formuläret skickas iväg...
   e.preventDefault();
 
-  // 2. Hämta vad som står i textrutan...
   const grocery = input.value;
 
-  // Validera/kontrollera att det finns något i textrutan...
   if (grocery.trim().length === 0) {
-    // alert('Du måste ange vad du ska handla!');
     const errorMsg = createErrorMessage('Du måste ange vad du ska köpa!!!');
-
     document.querySelector('.message-container').appendChild(errorMsg);
 
-    input.value = '';
+    setTimeout(() => {
+      document.querySelector('#error-message').remove();
+    }, 2000);
 
     return;
   }
 
-  // Ta bort felmeddelandet...
-  // Vi kontrollerar om element med id #error-message finns
-  // i så fall tar vi bort det...
-  if (document.querySelector('#error-message')) {
-    document.querySelector('#error-message').remove();
+  if (isInEditMode) {
+    const groceryToUpdate = groceryList.querySelector('.edit-mode');
+    removeFromStorage(groceryToUpdate.textContent);
+    groceryToUpdate.classList.remove('.edit-mode');
+    groceryToUpdate.remove();
+    isInEditMode = false;
+  } else {
+    if (checkIfGroceryExists(grocery)) {
+      const errorMsg = createErrorMessage(`${grocery} finns redan i listan!`);
+      document.querySelector('.message-container').appendChild(errorMsg);
+
+      setTimeout(() => {
+        document.querySelector('#error-message').remove();
+      }, 2000);
+
+      updateUI();
+      return;
+    }
   }
 
   addToDOM(grocery);
+  addToStorage(grocery);
   updateUI();
 };
 
-/******************************************************************/
-// REFACTORED KOD separera ansvaret för tillverkning av element...
-/******************************************************************/
-// Att placera vårt valda inköpsalternativ i DOM
 const addToDOM = (grocery) => {
   const item = document.createElement('li');
   item.appendChild(document.createTextNode(grocery));
@@ -57,47 +66,36 @@ const addToDOM = (grocery) => {
   groceryList.appendChild(item);
 };
 
-// Skapa en funktion som skapar en knapp...
-const createIconButton = (buttonClasses, iconClasses) => {
-  const button = document.createElement('button');
-  const classList = buttonClasses.split(' ');
-
-  classList.forEach((c) => button.classList.add(c));
-
-  const icon = createIcon(iconClasses);
-  button.appendChild(icon);
-  // Returnera vår nya knapp...
-  return button;
-};
-
-// Skapa en funktion som skapar ett element som har en ikon...
-const createIcon = (classes) => {
-  const icon = document.createElement('i');
-  const classList = classes.split(' ');
-
-  classList.forEach((c) => icon.classList.add(c));
-
-  return icon;
-};
-
 const handleClickGrocery = (e) => {
   if (e.target.parentElement.classList.contains('btn-link')) {
     removeGrocery(e.target.parentElement.parentElement);
+  } else {
+    editGrocery(e.target);
   }
+};
 
-  updateUI();
+const editGrocery = (grocery) => {
+  isInEditMode = true;
+  groceryList
+    .querySelectorAll('li')
+    .forEach((item) => item.classList.remove('edit-mode'));
+
+  grocery.classList.add('edit-mode');
+  saveButton.classList.add('btn-edit');
+  saveButton.innerHTML = '<i class="fa-light fa-pen"></i> Uppdatera';
+  input.value = grocery.textContent;
 };
 
 const removeGrocery = (item) => {
-  console.log(item);
   item.remove();
+  removeFromStorage(item.textContent);
 };
 
 const handleClearList = () => {
-  // På något måste iterera igenom groceryList och ta bort varje li element
   while (groceryList.firstChild)
     groceryList.removeChild(groceryList.firstChild);
 
+  clearStorage('groceries');
   updateUI();
 };
 
@@ -105,7 +103,6 @@ const handleFilterGroceries = (e) => {
   const groceries = document.querySelectorAll('li');
   const value = e.target.value.toLowerCase();
 
-  // loopa igenom groceries listan
   groceries.forEach((item) => {
     const itemName = item.firstChild.textContent.toLowerCase();
 
@@ -117,40 +114,38 @@ const handleFilterGroceries = (e) => {
   });
 };
 
+const checkIfGroceryExists = (grocery) => {
+  const fromStorage = getFromStorage();
+  return fromStorage.includes(grocery);
+};
+
 const createErrorMessage = (message) => {
-  // 1. Vi behöver skapa ett element och vi behöver sätta ett id på elementet
-  // 2. samt skapa en textnode för felmeddelandet
-  // 3. Lägga på rätt css klass för att indikera att det är ett fel.
   const div = document.createElement('div');
   div.setAttribute('id', 'error-message');
-  // const textContent = document.createTextNode(message);
-  // div.appendChild(textContent);
   div.appendChild(document.createTextNode(message));
   div.classList.add('error-message');
   return div;
 };
 
 const updateUI = () => {
-  // Rensar textrutan...
   input.value = '';
 
-  // Hämtar alla li element om det finns några...
   const groceries = document.querySelectorAll('li');
 
-  // Kontrollera om det inte finns några li element
   if (groceries.length === 0) {
-    // Gömma filter textrutan och töm allt knappen...
     clearButton.style.display = 'none';
     filterInput.style.display = 'none';
   } else {
-    // Annars visa filter textrutan och töm allt knappen...
     clearButton.style.display = 'block';
     filterInput.style.display = 'block';
   }
+
+  saveButton.innerHTML = "<i class='fa-solid fa-plus'></i> Lägg till";
+  saveButton.classList.remove('btn-edit');
+
+  isInEditMode = false;
 };
 
-// Koppla händelser som jag är intresserad...
-// Händelse som körs när DOM är laddat och klart!!!
 document.addEventListener('DOMContentLoaded', initApp);
 form.addEventListener('submit', handleAddGrocery);
 clearButton.addEventListener('click', handleClearList);
