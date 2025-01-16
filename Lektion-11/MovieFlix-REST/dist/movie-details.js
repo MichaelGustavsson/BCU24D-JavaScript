@@ -1,17 +1,15 @@
-import { movies } from './data/movies.js';
 import { createOverlay } from './utilities/dom.js';
 const initApp = () => {
     findMovie();
 };
-const findMovie = () => {
+const findMovie = async () => {
+    let url = 'http://localhost:3000/movies/';
     const id = location.search.split('=')[1];
-    const movie = movies.find((m) => m.id === +id);
-    console.log(movie);
-    if (movie) {
+    url += id;
+    const result = await fetch(url);
+    if (result.ok) {
+        const movie = (await result.json());
         displayMovie(movie);
-    }
-    else {
-        displayError();
     }
 };
 const displayMovie = (movie) => {
