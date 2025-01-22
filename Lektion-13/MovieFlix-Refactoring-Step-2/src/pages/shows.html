@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../assets/css/site.css" />
+    <script
+      src="https://kit.fontawesome.com/55174c58a9.js"
+      crossorigin="anonymous"></script>
+    <script type="module" src="../../dist/shows.js"></script>
+    <title>MovieFlix | Serier</title>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <div class="logo"><a href="../index.html">MovieFlix</a></div>
+        <nav>
+          <ul>
+            <li>
+              <a href="./movies.html">Filmer</a>
+            </li>
+            <li>
+              <a class="active" href="./shows.html">TV</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <section id="app-root" class="container">
+        <form id="searchForm" method="post">
+          <div class="search">
+            <input
+              type="text"
+              name="searchInput"
+              id="searchInput"
+              placeholder="Sök..." />
+            <i class="fa-regular fa-magnifying-glass"></i>
+          </div>
+        </form>
+        <h2>Populära TV serier</h2>
+        <div id="top-series" class="grid">
+          <!-- TV-Shows here... -->
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
