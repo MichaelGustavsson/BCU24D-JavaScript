@@ -1,49 +1,15 @@
+import { listShows, searchShows } from './services/shows-services.js';
 // Här hämtas referense till html element...
 document
     .querySelector('#searchForm')
     .addEventListener('submit', handleSearch);
 const initApp = () => {
-    listShows();
+    listShows().then((shows) => displayShows(shows));
 };
-const listShows = async () => {
-    const key = 'c225640b9109317dc84c9f661f0ca0ba';
-    const url = `https://api.themoviedb.org/3/discover/tv?page=1&api_key=${key}`;
-    try {
-        const response = await fetch(url);
-        if (response.ok) {
-            const body = await response.json();
-            const shows = body.results;
-            displayShows(shows);
-        }
-    }
-    catch (error) {
-        console.log(error);
-    }
-};
-const searchShows = async () => {
+const filterShows = async () => {
     const filter = document.querySelector('#searchInput').value;
-    if (filter) {
-        const key = 'c225640b9109317dc84c9f661f0ca0ba';
-        const url = `https://api.themoviedb.org/3/search/tv?query=${filter}&api_key=${key}`;
-        try {
-            const response = await fetch(url);
-            if (response.ok) {
-                const body = await response.json();
-                const movies = body.results;
-                displayShows(movies);
-            }
-            else {
-                throw new Error('Det gick galet!');
-            }
-        }
-        catch (error) {
-            console.log(error);
-            listShows();
-        }
-    }
-    else {
-        listShows();
-    }
+    const shows = await searchShows(filter);
+    displayShows(shows);
 };
 const displayShows = (shows) => {
     const app = document.querySelector('#top-series');
@@ -85,7 +51,6 @@ const displayShows = (shows) => {
 };
 async function handleSearch(e) {
     e.preventDefault();
-    await searchShows();
+    await filterShows();
 }
 document.addEventListener('DOMContentLoaded', initApp);
-export {};

@@ -1,25 +1,9 @@
+import { findShow } from './services/shows-services.js';
 import { createOverlay } from './utilities/dom.js';
 const initApp = () => {
-    findShow();
-};
-const findShow = async () => {
     const id = location.search.split('=')[1];
-    const key = 'c225640b9109317dc84c9f661f0ca0ba';
-    const url = `https://api.themoviedb.org/3/tv/${id}?api_key=${key}`;
-    try {
-        const response = await fetch(url);
-        if (response.ok) {
-            const body = await response.json();
-            const show = body;
-            displayShow(show);
-        }
-        else {
-            throw new Error(response.status.toString());
-        }
-    }
-    catch (error) {
-        console.log(error);
-    }
+    findShow(id).then((show) => displayShow(show));
+    ``;
 };
 const displayShow = (show) => {
     const div = document.createElement('div');
