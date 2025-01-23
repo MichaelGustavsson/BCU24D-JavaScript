@@ -1,0 +1,11 @@
+{
+  "name": "westcoast-cars",
+  "version": "1.0.0",
+  "description": "Simple demo for json-server",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Michael Gustavsson",
+  "license": "ISC"
+}

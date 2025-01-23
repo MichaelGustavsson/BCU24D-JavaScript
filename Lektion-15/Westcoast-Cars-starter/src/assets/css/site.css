@@ -1,0 +1,315 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;400;900&family=Poppins:ital,wght@0,100;0,200;0,400;0,500;0,600;0,800;1,200;1,400;1,500;1,600&display=swap');
+
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #00796b;
+  font-family: 'Poppins', sans-serif;
+  line-height: 1.6;
+}
+
+h1,
+h2,
+h3 {
+  font-weight: 400;
+}
+
+a {
+  text-decoration: none;
+}
+
+section p {
+  font-size: 0.9rem;
+  padding: 0.7rem;
+  text-align: center;
+}
+
+footer {
+  text-align: center;
+  background: #444;
+  color: #fff;
+  padding: 0.4rem;
+}
+
+main {
+  padding: 1rem;
+}
+
+#vehicles {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  justify-content: space-around;
+  gap: 1rem;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+}
+
+.vehicle-image {
+  border: solid 1px #ef6c00;
+  background: #fff;
+  min-width: 300px;
+
+  border-radius: 0.5rem;
+}
+
+.vehicle-image img {
+  border-top-right-radius: 0.5rem;
+  border-top-left-radius: 0.5rem;
+  width: 100%;
+}
+
+.vehicle-image p {
+  text-align: center;
+  font-style: italic;
+}
+
+/* New vehicle form */
+#vehicle-form {
+  padding: 1.88rem 0;
+  margin: 0 1rem;
+}
+
+#vehicle-form .form-control {
+  margin-bottom: 1rem;
+}
+
+#vehicle-form label {
+  display: block;
+}
+
+#vehicle-form input {
+  width: 100%;
+  padding: 0.63rem;
+  border: solid 1px #ddd;
+}
+
+#vehicle-form input:focus {
+  outline: none !important;
+  border: solid 1px #ef6c00;
+}
+
+/* Navigation */
+header {
+  position: sticky;
+  z-index: 1;
+  top: 0;
+  opacity: 0.9;
+  background: #004d40;
+}
+
+nav {
+  padding: 0 1rem;
+}
+
+nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav ul {
+  list-style: none;
+}
+
+nav ul li.logo {
+  font-size: 1.6rem;
+}
+
+nav ul li.logo span {
+  color: #00796b;
+  /* color: #2196f3; */
+}
+
+nav ul li.toggle {
+  order: 1;
+}
+
+nav ul li.menu-item {
+  display: none;
+  width: 100%;
+  text-align: center;
+  order: 2;
+}
+
+nav ul li a {
+  display: block;
+  padding: 0.4rem 0.4rem;
+  color: #fff;
+}
+
+nav ul li a:hover,
+nav ul li a.active {
+  color: #ef6c00;
+}
+
+nav ul:has(li .menu-btn:checked) .menu-item {
+  display: block;
+}
+
+/* Draw the hamburger menu */
+nav ul li .menu-btn {
+  display: none;
+}
+
+nav ul li .menu-icon {
+  padding: 28px 20px;
+  cursor: pointer;
+}
+
+nav ul li .menu-icon .nav-icon {
+  background-color: #fff;
+  display: block;
+  height: 2px;
+  width: 18px;
+  position: relative;
+  transition: background-color 0.2s ease-out;
+}
+
+nav ul li .menu-icon .nav-icon:before,
+nav ul li .menu-icon .nav-icon:after {
+  background-color: #fff;
+  content: '';
+  display: block;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  transition: all 0.2s ease-out;
+}
+
+nav ul .menu-icon .nav-icon:before {
+  top: -5px;
+}
+
+nav ul li .menu-icon .nav-icon:after {
+  top: 5px;
+}
+
+/* Animate the hamburger menu */
+nav ul li .menu-btn:checked ~ .menu-icon .nav-icon {
+  background: transparent;
+}
+
+nav ul li .menu-btn:checked ~ .menu-icon .nav-icon::before {
+  transform: rotate(-45deg);
+  top: 0;
+}
+
+nav ul li .menu-btn:checked ~ .menu-icon .nav-icon::after {
+  transform: rotate(45deg);
+  top: 0;
+}
+
+/* Uitlities classes */
+.container {
+  max-width: 960px;
+  margin: auto;
+}
+
+.page-title {
+  color: #ef6c00;
+}
+
+.bg-dark {
+  background: #333;
+  color: #fff;
+}
+
+.bg-light {
+  background-color: #d5d3d3;
+}
+
+.bg-primary {
+  background: #00796b;
+  color: #ffb74d;
+}
+
+.btn {
+  display: inline-block;
+  width: 100%;
+  font-size: 0.9rem;
+  color: #fff;
+  background: #000;
+  padding: 0.5rem 1.25rem;
+  border: none;
+  outline: none !important;
+  cursor: pointer;
+}
+
+.btn-light {
+  background: #d5d3d3;
+  color: #333;
+}
+
+.btn:hover {
+  background: #e65100;
+  color: #333;
+}
+
+.box {
+  padding: 2.5rem;
+  text-align: center;
+  width: 100%;
+}
+
+.box i {
+  margin-bottom: 1rem;
+}
+
+/* MEDIA QUERIES */
+/* min-width: 768px */
+@media (min-width: 768px) {
+  section p {
+    font-size: 1rem;
+  }
+
+  section i {
+    font-size: 1.3rem;
+  }
+
+  nav ul {
+    align-items: center;
+    flex-wrap: nowrap;
+  }
+
+  nav ul li.menu-item {
+    display: block;
+    width: auto;
+  }
+
+  nav ul li.logo {
+    flex: 1;
+  }
+
+  nav ul li.toggle {
+    display: none;
+  }
+
+  #vehicles {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  #vehicle-form {
+    max-width: 600px;
+    margin: auto;
+  }
+
+  .btn {
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  #vehicles {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
