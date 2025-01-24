@@ -1,0 +1,14 @@
+{
+  "name": "westcoast-cars",
+  "version": "1.0.0",
+  "description": "Simple demo for json-server",
+  "main": "index.js",
+  "scripts": {
+    "server": "npx json-server vehicles.json"
+  },
+  "author": "Michael Gustavsson",
+  "license": "ISC",
+  "dependencies": {
+    "json-server": "^1.0.0-beta.3"
+  }
+}
