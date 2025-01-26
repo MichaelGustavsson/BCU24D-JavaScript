@@ -1,0 +1,16 @@
+{
+  "name": "eshop",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "dev": "tsc --watch",
+    "server": "npx json-server eshop.json"
+  },
+  "author": "Michael Gustavsson",
+  "license": "ISC",
+  "devDependencies": {
+    "json-server": "^1.0.0-beta.3",
+    "typescript": "^5.7.3"
+  }
+}
