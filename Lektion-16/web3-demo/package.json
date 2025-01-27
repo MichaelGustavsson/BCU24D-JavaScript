@@ -1,0 +1,16 @@
+{
+  "name": "web3-demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "ether": "node app-ethers.mjs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ethers": "^6.13.5",
+    "ganache": "^7.9.2"
+  }
+}
