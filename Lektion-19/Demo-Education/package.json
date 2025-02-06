@@ -1,0 +1,14 @@
+{
+  "name": "lektion-19",
+  "version": "1.0.0",
+  "description": "Enkel demo för inlämningsuppgiften",
+  "main": "app.js",
+  "scripts": {
+    "server": "npx json-server data.json"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "json-server": "^1.0.0-beta.3"
+  }
+}
