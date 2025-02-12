@@ -1,0 +1,93 @@
+{
+  "courses": [
+    {
+      "id": "1",
+      "title": "JavaScript Beginners Guide",
+      "duration": "10 veckor",
+      "startDate": "2025-04-01",
+      "price": "FREE"
+    },
+    {
+      "id": "2",
+      "title": "JavaScript Experts Guide",
+      "duration": "6 veckor",
+      "startDate": "2025-08-01",
+      "price": "FREE"
+    },
+    {
+      "id": "3",
+      "title": "JavaScript Deep Dive",
+      "duration": "4 veckor",
+      "startDate": "2025-10-01",
+      "price": "FREE"
+    }
+  ],
+  "students": [
+    {
+      "id": "1",
+      "firstName": "Michael",
+      "lastName": "Gustavsson",
+      "email": "michael@gmail.com",
+      "phone": "070-11 22 33",
+      "address": {
+        "addressLine": "Gatan 1",
+        "postalCode": "111 22",
+        "city": "Staden"
+      }
+    },
+    {
+      "id": "2",
+      "firstName": "Eva",
+      "lastName": "Gustavsson",
+      "email": "eva@gmail.com",
+      "phone": "070-44 55 66",
+      "address": {
+        "addressLine": "Gatan 2",
+        "postalCode": "111 22",
+        "city": "Staden"
+      }
+    }
+  ],
+  "bookings": [
+    {
+      "id": "4df6",
+      "student": {
+        "email": "michael@gmail.com",
+        "firstName": "Michael",
+        "lastName": "Gustavsson",
+        "phone": "070-11 22 33"
+      },
+      "courseId": "3"
+    },
+    {
+      "id": "c60f",
+      "student": {
+        "email": "eva@gmail.com",
+        "firstName": "Eva",
+        "lastName": "Gustavsson",
+        "phone": "070-11 22 33"
+      },
+      "courseId": "3"
+    },
+    {
+      "id": "59c1",
+      "studentEmail": "eva@gmail.com",
+      "courseId": "2"
+    },
+    {
+      "id": "5e05",
+      "studentEmail": "eva@gmail.com",
+      "courseId": "1"
+    },
+    {
+      "id": "c2f3",
+      "studentEmail": "eva@gmail.com",
+      "courseId": "2"
+    },
+    {
+      "id": "1b3c",
+      "studentEmail": "eva@gmail.com",
+      "courseId": "2"
+    }
+  ]
+}
